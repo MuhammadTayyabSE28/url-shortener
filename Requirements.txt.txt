@@ -1,0 +1,34 @@
+Since the project uses Flask and SQLite (which is built into Python), we only need Flask.
+
+Create a file named requirements.txt and add:
+
+Flask==3.1.1
+
+If your installed Flask version is different, replace 3.1.1 with your version.
+
+To check your installed version
+
+Run:
+
+py -3.12 -m pip show Flask
+
+or
+
+pip show Flask
+
+If the output shows:
+
+Version: 3.0.3
+
+then your requirements.txt should be:
+
+Flask==3.0.3
+Your final project structure should look like this:
+url_shortener/
+│
+├── app.py
+├── urls.db
+├── requirements.txt
+├── README.md
+└── templates/
+    └── index.html
