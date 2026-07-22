@@ -163,3 +163,28 @@ Email: your-email@example.com
 ## License
 
 This project is intended for educational and portfolio purposes.
+## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home-page.jpg)
+
+### Generated Short URL
+
+![Short URL](screenshots/short-url.jpg)
+
+### Redirect Result
+
+![Redirect](screenshots/redirect.jpg)## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home-page.jpg)
+
+### Generated Short URL
+
+![Short URL](screenshots/short-url.jpg)
+
+### Redirect Result
+
+![Redirect](screenshots/redirect.jpg)
