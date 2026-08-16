@@ -188,3 +188,7 @@ This project is intended for educational and portfolio purposes.
 ### Redirect Result
 
 ![Redirect](screenshots/redirect.jpg)
+
+## Development
+
+This project is actively being improved and maintained as part of my software engineering practice.
