@@ -1,54 +1,89 @@
 # URL Shortener
 
-## Description
+[![CI](https://github.com/MuhammadTayyabSE28/url-shortener/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/MuhammadTayyabSE28/url-shortener/actions/workflows/tests.yml)
 
-The URL Shortener is a web application built using Python, Flask, and SQLite. It allows users to convert long URLs into short, unique links. When a shortened URL is accessed, the application automatically redirects the user to the original website.
+A lightweight URL Shortener web application built with **Python, Flask, and SQLite**. It converts long URLs into short, unique links and redirects users to the original website when the shortened URL is accessed.
 
-This project demonstrates the use of Flask routing, form handling, SQLite database integration, and URL redirection.
-
----
+This project demonstrates Flask routing, form handling, SQLite database integration, URL generation, HTTP redirection, automated testing with pytest, Docker containerization, and GitHub Actions CI.
 
 ## Features
 
-- Generate unique short URLs
-- Redirect users to the original website
-- Store URL mappings in an SQLite database
-- Responsive and user-friendly interface
-- Simple and lightweight design
-
----
+* Generate unique six-character short URLs
+* Redirect shortened URLs to the original destination
+* Store URL mappings in SQLite
+* Responsive and user-friendly web interface
+* Automated tests with pytest
+* Dockerized application
+* GitHub Actions CI pipeline
+* Lightweight Flask-based architecture
 
 ## Technologies Used
 
-- Python
-- Flask
-- SQLite
-- HTML5
-- CSS3
-
----
+* **Python 3.12**
+* **Flask 3.1.3**
+* **SQLite**
+* **HTML5**
+* **CSS3**
+* **pytest 9.1.1**
+* **Docker**
+* **GitHub Actions**
 
 ## Project Structure
 
 ```text
-url_shortener/
+url-shortener/
 │
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+│
+├── screenshots/
+│   ├── home-page.JPG
+│   ├── short-url.JPG
+│   └── redirect.JPG
+│
+├── templates/
+│   └── index.html
+│
+├── tests/
+│   └── test_app.py
+│
+├── .gitignore
 ├── app.py
-├── urls.db
-├── requirements.txt
+├── Dockerfile
 ├── README.md
-└── templates/
-    └── index.html
+├── requirements.txt
+└── urls.db
 ```
 
----
+## How It Works
+
+The application follows a simple flow:
+
+```text
+User enters a long URL
+        ↓
+Flask receives the POST request
+        ↓
+A random six-character short code is generated
+        ↓
+Original URL + short code are stored in SQLite
+        ↓
+Short URL is displayed to the user
+        ↓
+User visits the short URL
+        ↓
+Flask looks up the short code
+        ↓
+User is redirected to the original URL
+```
 
 ## Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/url-shortener.git
+git clone https://github.com/MuhammadTayyabSE28/url-shortener.git
 ```
 
 ### 2. Navigate to the project directory
@@ -57,7 +92,7 @@ git clone https://github.com/your-username/url-shortener.git
 cd url-shortener
 ```
 
-### 3. Install the required dependency
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -69,16 +104,17 @@ pip install -r requirements.txt
 python app.py
 ```
 
----
+### 5. Open the application
 
-## Usage
-
-1. Open your browser and visit:
+Visit:
 
 ```text
 http://127.0.0.1:5000
 ```
 
+## Usage
+
+1. Open the application in your browser.
 2. Enter a valid long URL.
 
 Example:
@@ -88,107 +124,149 @@ https://www.google.com
 ```
 
 3. Click **Generate Short URL**.
-
-4. The application generates a unique short URL.
-
-Example:
+4. The application generates a short URL such as:
 
 ```text
 http://127.0.0.1:5000/A1b2C3
 ```
 
-5. Click the generated short URL to open the original website.
+5. Open the generated short URL.
+6. The application redirects you to the original website.
 
----
 ## Database
 
-This project uses SQLite as the database.
+The project uses **SQLite** to store URL mappings.
 
-### Table: `urls`
+### `urls` table
 
-| Column Name  | Data Type | Description                            |
-|--------------|-----------|----------------------------------------|
-| id           | INTEGER   | Primary key (Auto Increment)           |
-| original_url | TEXT      | Stores the original long URL           |
-| short_code   | TEXT      | Stores the generated unique short code |
+| Column         | Type    | Description                     |
+| -------------- | ------- | ------------------------------- |
+| `id`           | INTEGER | Primary key with auto-increment |
+| `original_url` | TEXT    | Original long URL               |
+| `short_code`   | TEXT    | Generated unique short code     |
 
----
+## Automated Testing
 
-## Requirements
+The project uses **pytest** to automatically verify the application's core behavior.
 
-Create a `requirements.txt` file with the following content:
+### Run tests
 
-```text
-Flask
+```bash
+python -m pytest
 ```
 
----
+The current test suite covers:
 
-## Future Improvements
+* Homepage availability
+* Short URL creation
+* Short URL redirection
+* Invalid short URL handling
 
-- Custom short URLs
-- Copy URL button
-- QR code generation
-- Click analytics
-- User authentication
-- URL expiration
+Current result:
 
----
+```text
+4 passed
+```
+
+## Docker
+
+The application can run inside a Docker container.
+
+### Build the Docker image
+
+```bash
+docker build -t url-shortener .
+```
+
+### Run the container
+
+```bash
+docker run -p 5000:5000 url-shortener
+```
+
+### Open the Dockerized application
+
+Visit:
+
+```text
+http://localhost:5000
+```
+
+The Flask application is configured to listen on:
+
+```text
+0.0.0.0:5000
+```
+
+so it can be accessed through the Docker container's published port.
+
+## Continuous Integration
+
+This project uses **GitHub Actions** to automatically run the test suite whenever code is pushed to GitHub.
+
+The workflow is located at:
+
+```text
+.github/workflows/tests.yml
+```
+
+The CI pipeline performs these steps:
+
+```text
+Push code to GitHub
+        ↓
+GitHub creates Ubuntu runner
+        ↓
+Checkout repository
+        ↓
+Set up Python 3.12
+        ↓
+Install dependencies
+        ↓
+Run pytest
+        ↓
+Build passes only when tests pass
+```
+
+The CI workflow can be viewed here:
+
+https://github.com/MuhammadTayyabSE28/url-shortener/actions
 
 ## Screenshots
 
-You can add screenshots of the application here.
+### Home Page
 
-- Home Page
-- Generated Short URL
-- Redirect Result
+![Home Page](screenshots/home-page.JPG)
 
----
+### Generated Short URL
+
+![Generated Short URL](screenshots/short-url.JPG)
+
+### Redirect Result
+
+![Redirect Result](screenshots/redirect.JPG)
+
+## Future Improvements
+
+* Custom short URLs
+* Copy-to-clipboard button
+* QR code generation
+* Click analytics
+* User authentication
+* URL expiration
+* Improved URL validation
+* Production WSGI server
+* Deployment to a cloud platform
 
 ## Author
 
 **Muhammad Tayyab**
 
-Software Engineering Student  
+Software Engineering Student
 SZABIST Islamabad
 
-GitHub: https://github.com/your-github-username
-
-LinkedIn: https://linkedin.com/in/your-linkedin-profile
-
-Email: your-email@example.com
-
----
+GitHub: https://github.com/MuhammadTayyabSE28
 
 ## License
 
-This project is intended for educational and portfolio purposes.
-## Screenshots
-
-### Home Page
-
-![Home Page](screenshots/home-page.jpg)
-
-### Generated Short URL
-
-![Short URL](screenshots/short-url.jpg)
-
-### Redirect Result
-
-![Redirect](screenshots/redirect.jpg)## Screenshots
-
-### Home Page
-
-![Home Page](screenshots/home-page.jpg)
-
-### Generated Short URL
-
-![Short URL](screenshots/short-url.jpg)
-
-### Redirect Result
-
-![Redirect](screenshots/redirect.jpg)
-
-## Development
-
-This project is actively being improved and maintained as part of my software engineering practice.
+This project was developed for educational and portfolio purposes.
